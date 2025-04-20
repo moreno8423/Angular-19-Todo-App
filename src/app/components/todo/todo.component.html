@@ -1,0 +1,29 @@
+
+<div class="main">
+<div class="container">
+<h2> Todo List</h2>
+<input type="text"
+       [(ngModel)]="todoTitle"
+       placeholder="Enter Todo"
+       (keyup.enter)="addTodo()"
+       class="form-control"
+       >
+       <button (click)="addTodo()" class="btn"> Add Todo</button>
+
+@if(todos.length > 0){
+    <ul>
+        @for(todo of todos; track todo.id){
+            <li [ngClass]="todo.completed ? 'completed' : 'incomplete' ">
+                <input type="checkbox" (change)="completeTodo(todo)" class="checker">
+                {{todo.title}}
+                <button (click)="deleteTodo(todo)" class="del-btn"> Delete Todo</button>
+            </li>
+        }
+    </ul>
+
+}@else{
+    <h3> Empty List...</h3>
+}
+
+</div>
+</div>
